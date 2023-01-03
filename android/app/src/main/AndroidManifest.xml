@@ -10,6 +10,15 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+
+        <service
+            android:name=".InitialFirebase"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data android:name="com.webengage.sdk.android.environment" android:value="us" />
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

@@ -2,6 +2,9 @@ package com.latestsampleapp;
 
 import android.app.Application;
 import android.content.Context;
+
+import androidx.annotation.NonNull;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
@@ -9,9 +12,18 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.latestsampleapp.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import com.webengage.personalization.WEPersonalization;
+
+import com.webengage.WebengageBridge;
+import com.webengage.sdk.android.WebEngage;
+import com.webengage.sdk.android.WebEngageConfig;
+import com.webengage.sdk.android.WebEngageActivityLifeCycleCallbacks;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -55,7 +67,27 @@ public class MainApplication extends Application implements ReactApplication {
     // If you opted-in for the New Architecture, we enable the TurboModule system
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
+    WebengageBridge.getInstance();
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+      WebEngageConfig webEngageConfig = new WebEngageConfig.Builder()
+              .setWebEngageKey("~47b66161")
+              .setDebugMode(true) // only in development mode
+              .build();
+      registerActivityLifecycleCallbacks(new WebEngageActivityLifeCycleCallbacks(this, webEngageConfig));
+
+      // Firebase
+    FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+      @Override
+      public void onComplete(@NonNull Task<String> task) {
+        try {
+          String token = task.getResult();
+          WebEngage.get().setRegistrationID(token);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    });
+    WEPersonalization.Companion.get().init();
   }
 
   /**

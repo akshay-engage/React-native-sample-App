@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "454244845448",
+    "project_id": "latestreactnative",
+    "storage_bucket": "latestreactnative.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454244845448:android:3e109928ed3608d9f29c3d",
+        "android_client_info": {
+          "package_name": "com.latestsampleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454244845448-s6psktgsfr17tpckm1s7ap4kbdnla3r3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGp2kaL_ilkpADjOIXzVk0FwI5TK1hzs4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454244845448-s6psktgsfr17tpckm1s7ap4kbdnla3r3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
